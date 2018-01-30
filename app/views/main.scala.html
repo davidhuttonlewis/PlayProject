@@ -1,15 +1,63 @@
 @(title: String)(content: Html)
 
-<!DOCTYPE html>
+@*<!DOCTYPE html>*@
 
-<html>
+@*<html>*@
+    @*<head>*@
+        @*<title>@title</title>*@
+        @*<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">*@
+        @*<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">*@
+        @*<script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>*@
+    @*</head>*@
+    @*<body>*@
+    @*</body>*@
+@*</html>*@
+
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <title>@title</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
+
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Nadarrus Games</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Board Games
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">2 Player Games</a></li>
+                            <li><a href="#">Classic Games</a></li>
+                            <li><a href="#">Party Games</a></li>
+                        </ul>
+                        @*<li><a href="#">Card Games</a></li>*@
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Card Games
+                        <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">magicTheGathering</a></li>
+                    </ul>
+                    <li><a href="#">RPGs</a></li>
+                    <li><a href="#">Minatures</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="/contactUs">Contact Us</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @*<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>*@
+                <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Basket</a></li>
+                </ul>
+            </div>
+        </nav>
         @content
     </body>
 </html>

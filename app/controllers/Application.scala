@@ -11,24 +11,8 @@ class Application extends Controller {
     Ok(views.html.index("Your new application is ready."))
   }
 
-  def home = Action {
-    Ok("Hello World!")
+  def contactUS = Action {
+    Ok(views.html.contactUs())
   }
-
-  def displayName(name: String) = Action {implicit request:
-  Request[AnyContent] =>
-    Ok(s"Hello $name")
-  }
-
-  def indexPage = Action { implicit request:
-  Request[AnyContent] =>
-    Result(
-      header = ResponseHeader(200, Map.empty),
-      body = HttpEntity.Strict(ByteString("Hello World!"),
-        Some("text/plain"))
-    )
-  }
-
-  def redirectPage = Action { implicit request: Request[AnyContent] => Redirect("https://tappedout.net")}
 
 }

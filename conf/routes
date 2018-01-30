@@ -3,10 +3,11 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
-GET     /home                       controllers.Application.home
-GET     /name                       controllers.Application.displayName(name: String)
-GET     /indexPage                  controllers.Application.indexPage
-GET     /redirectPage               controllers.Application.redirectPage
+GET     /home                       controllers.Application.index
+GET     /contactUs                  controllers.Application.contactUS
+
+
+
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
