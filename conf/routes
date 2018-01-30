@@ -4,12 +4,13 @@
 
 # Home page
 GET     /home                       controllers.Application.index
-GET     /boardGames                 controllers.Application.boardGames
+GET     /boardGames                 controllers.BoargameStock.boardgamePage
 GET     /cardGames                  controllers.Application.cardGames
 GET     /rpgs                       controllers.Application.rpgs
 GET     /minatures                  controllers.Application.minatures
-GET     /accessorries                controllers.Application.accessorries
+GET     /accessorries               controllers.Application.accessorries
 GET     /contactUs                  controllers.Application.contactUS
 GET     /basket                     controllers.Application.basket
+GET     /itemDetails/:name          controllers.Application.itemDetails(name : String)
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

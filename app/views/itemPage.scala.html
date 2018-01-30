@@ -1,0 +1,32 @@
+@(stock: Array[(String,String, String, Double)])
+
+@main("Items") {
+
+    <div id="products" class="row list-group">
+        @for(stock <- stock) {
+            <div class="item  col-xs-4 col-lg-4">
+                <div class="thumbnail">
+                    <a href=@{s"/itemDetails/${stock._2}"}>
+                    <img class="group list-group-image" src=@routes.Assets.at(s"images/${stock._1}") alt=@{stock._1} style="width: 100px; height: 100px" />
+                    </a>
+                    <div class="caption">
+                        <h4 class="group inner list-group-item-heading">
+                        @stock._2</h4>
+                        <p class="group inner list-group-item-text">
+                        @stock._3</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p class="lead">
+                                @stock._4</p>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <a class="btn btn-success" href="http://www.jquery2dotnet.com" style="c">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+}
