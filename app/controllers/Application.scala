@@ -15,4 +15,18 @@ class Application extends Controller {
     Ok(views.html.contactUs())
   }
 
+  def boardGames = TODO
+
+  def cardGames = TODO
+
+  def rpgs = TODO
+
+  def minatures = TODO
+
+  def accessorries = TODO
+
+  def basket = TODO
+
+
+
 }
