@@ -1,10 +1,11 @@
-@(stock: List[stockItem])
+@(stock: List[stockItem], tag:String)
 
 @main("Items") {
 
     <div id="products" class="row list-group">
         @for(stock <- stock) {
-            <div class="item  col-xs-4 col-lg-4">
+            @if(tag == "All" || stock.tags.contains(tag)){
+                <div class="item  col-xs-4 col-lg-4">
                 <div class="thumbnail">
                     <a href=@{s"/itemDetails/${stock.id}"}>
                     <img class="group list-group-image" src=@routes.Assets.at(s"images/${stock.image}") alt=@{stock.name} style="width: 100px; height: 100px" />
@@ -13,7 +14,7 @@
                         <h4 class="group inner list-group-item-heading">
                         @stock.name</h4>
                         <p class="group inner list-group-item-text">
-                        @stock.info</p>
+
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
                                 <p class="lead">
@@ -25,7 +26,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
+            }
         }
     </div>
 

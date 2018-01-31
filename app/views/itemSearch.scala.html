@@ -1,0 +1,36 @@
+@(stock: List[stockItem], search:String)
+
+@main("Items") {
+
+    <div id="products" class="row list-group">
+    @for(stock <- stock) {
+        @if(stock.name.equalsIgnoreCase(search)){
+            <div class="item  col-xs-4 col-lg-4">
+                <div class="thumbnail">
+                    <a href=@{s"/itemDetails/${stock.id}"}>
+                        <img class="group list-group-image" src=@routes.Assets.at(s"images/${stock.image}") alt=@{stock.name} style="width: 100px; height: 100px" />
+                    </a>
+                    <div class="caption">
+                        <h4 class="group inner list-group-item-heading">
+                        @stock.name</h4>
+                        <p class="group inner list-group-item-text">
+
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                    <p class="lead">
+                        @stock.price</p>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <a class="btn btn-success" href="" style="c">Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}else{
+        <p>Nothing Found</p>
+    }
+}
+    </div>
+
+}
