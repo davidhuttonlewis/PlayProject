@@ -28,7 +28,9 @@ class BoargameStock extends Controller{
 
     val search = request.body.asFormUrlEncoded.get("searchInput").head
 
-    Ok(views.html.itemSearch(games,search))
+
+
+    Ok(views.html.itemSearch(games.filter(stockItem => stockItem.name.contains(search))))
 
   }
 

@@ -1,10 +1,12 @@
-@(stock: List[stockItem], search:String)
+@(stock: List[stockItem])
 
 @main("Items") {
 
     <div id="products" class="row list-group">
+        @if(stock.isEmpty){
+            <p>Nothing Found</p>
+        }else{
     @for(stock <- stock) {
-        @if(stock.name.equalsIgnoreCase(search)){
             <div class="item  col-xs-4 col-lg-4">
                 <div class="thumbnail">
                     <a href=@{s"/itemDetails/${stock.id}"}>
@@ -27,9 +29,8 @@
             </div>
         </div>
     </div>
-}else{
-        <p>Nothing Found</p>
-    }
+
+}
 }
     </div>
 
