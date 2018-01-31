@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-    </head>
-    <body>
+@(name: String, stock: List[stockItem])
 
-    </body>
-</html>
+@main("Items") {
+
+    @for(stock <- stock) {
+        @if(name == stock.id){
+            <h3 STYLE="text-align: center">@stock.name</h3>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src=@routes.Assets.at(s"images/${stock.image}") alt=@{stock.name} style="width: 500px; height: 500px">
+                </div>
+                <div class="col-sm-8">
+                    <h2>@stock.info</h2>
+                    <div class="row">
+                        <div class="col-sm-4"><h1>£@stock.price</h1><a class="btn btn-success" href="" style="c">Add to cart</a></div>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4"></div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        }
+    }
+
+
+    }

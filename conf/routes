@@ -11,6 +11,6 @@ GET     /minatures                  controllers.Application.minatures
 GET     /accessorries               controllers.Application.accessorries
 GET     /contactUs                  controllers.Application.contactUS
 GET     /basket                     controllers.Application.basket
-GET     /itemDetails/:name          controllers.Application.itemDetails(name : String)
+GET     /itemDetails/:name          controllers.BoargameStock.itemDetails(name : String)
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
