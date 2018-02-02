@@ -10,8 +10,12 @@ GET     /rpgs                       controllers.Application.rpgs
 GET     /minatures                  controllers.Application.minatures
 GET     /accessorries               controllers.Application.accessorries
 GET     /contactUs                  controllers.Application.contactUS
-GET     /basket                     controllers.Application.basket
+GET     /basket                     controllers.BoargameStock.openBasket
 GET     /itemDetails/:name          controllers.BoargameStock.itemDetails(name : String)
+GET     /basket/:itemId             controllers.BoargameStock.addItemToBasket(itemId: String)
+GET     /remove/:itemId             controllers.BoargameStock.removeItemFromBasket(itemId: String)
+
+
 POST    /search                     controllers.BoargameStock.itemSearch
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

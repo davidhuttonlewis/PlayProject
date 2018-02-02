@@ -3,6 +3,8 @@ package controllers
 import models.stockItem
 import play.api.mvc.{Action, AnyContent, Controller, Request}
 import views.html.helper.form
+
+import scala.collection.mutable.ListBuffer
 class BoargameStock extends Controller{
 
 
@@ -13,6 +15,8 @@ class BoargameStock extends Controller{
     stockItem("Onitama","Onitama.png", "Onitama","Onitama is a brilliant little abstract strategy game with a random starting set-up and a set number of actions that really test players abillity to think ahead ", 28.00,List("All","2Player")),
     stockItem("Twilight-Imperium","TwilightImperium.jpg", "Twilight Imperium","Twilight Imperium (Fourth Edition) is a game of galactic conquest in which three to six players take on the role of one of seventeen factions vying for galactic domination", 135.00,List("All","War"))
   )
+
+  val basket = ListBuffer[stockItem]()
 
   def boardgamePage(cat : String) = Action {
     Ok(views.html.itemPage(games,cat))
@@ -27,12 +31,34 @@ class BoargameStock extends Controller{
   def itemSearch = Action {implicit request:Request[AnyContent] =>
 
     val search = request.body.asFormUrlEncoded.get("searchInput").head
-
-
-
     Ok(views.html.itemSearch(games.filter(stockItem => stockItem.name.contains(search))))
 
   }
 
+  def findItem (itemId:String) =  games.find(_.id == itemId) match {
+
+    case Some(game) => game
+
+  }
+  def openBasket = Action {
+
+
+    Ok(views.html.basket(basket))
+
+  }
+
+  def addItemToBasket (itemName:String)= Action {implicit request:Request[AnyContent] =>
+
+    basket += findItem(itemName)
+    Ok(views.html.basket(basket))
+
+  }
+
+  def removeItemFromBasket (itemName:String)= Action {implicit request:Request[AnyContent] =>
+
+    basket -= findItem(itemName)
+    Ok(views.html.basket(basket))
+
+  }
 
 }
