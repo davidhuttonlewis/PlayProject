@@ -13,7 +13,7 @@
                 <div class="col-sm-8">
                     <h2>@stock.info</h2>
                     <div class="row">
-                        <div class="col-sm-4"><h1>£@stock.price</h1><a class="btn btn-warning" href=@{s"/basket/${stock.id}"} style="c">Add to cart</a></div>
+                        <div class="col-sm-4"><h1>@{f"£${stock.price}%3.2f"}</h1><a class="btn btn-warning" href=@{s"/basket/${stock.id}"} style="c">Add to cart</a></div>
                         <div class="col-sm-4"></div>
                         <div class="col-sm-4"></div>
                         <div class="col-sm-4"></div>

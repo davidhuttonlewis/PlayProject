@@ -8,6 +8,8 @@ import scala.collection.mutable.ListBuffer
 class BoargameStock extends Controller{
 
 
+
+
   val games = List(
     stockItem("Gloomhaven","Gloomhaven.jpg", "Gloomhaven","Gloomhaven is a game of Euro-inspired tactical combat in a persistent world of shifting motives", 140.00,List("All","Co-op","Campiagn")),
     stockItem("Buffy-the-Vampire-Slayer" ,"buffy.png", "Buffy the Vampire Slayer", "In Buffy the Vampire Slayer: The Board Game, you help Buffy and her friends defend the town of Sunnydale from an onslaught of vampires and demons",40.00,List("All","Co-op")),
@@ -17,6 +19,15 @@ class BoargameStock extends Controller{
   )
 
   val basket = ListBuffer[stockItem]()
+
+
+  def basketTotal(basket: ListBuffer[stockItem]): Double ={
+    var total = 0.0
+    for (basket <- basket){
+      total += basket.price
+    }
+    total
+  }
 
   def boardgamePage(cat : String) = Action {
     Ok(views.html.itemPage(games,cat))
@@ -40,25 +51,33 @@ class BoargameStock extends Controller{
     case Some(game) => game
 
   }
+
   def openBasket = Action {
 
+    //basket.groupBy(_.id)
+    //basket.groupBy(identity).mapValues(_.size)
+    println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    println(basket.groupBy(identity).mapValues(_.size))
 
-    Ok(views.html.basket(basket))
+    Ok(views.html.basket(basket.groupBy(identity).mapValues(_.size),basketTotal(basket)))
 
   }
 
   def addItemToBasket (itemName:String)= Action {implicit request:Request[AnyContent] =>
 
     basket += findItem(itemName)
-    Ok(views.html.basket(basket))
-
+    Redirect(routes.BoargameStock.openBasket())
   }
 
   def removeItemFromBasket (itemName:String)= Action {implicit request:Request[AnyContent] =>
 
     basket -= findItem(itemName)
-    Ok(views.html.basket(basket))
+    Redirect(routes.BoargameStock.openBasket())
+  }
 
+  def purchase = Action {implicit request: Request[AnyContent]=>
+    basket.clear()
+    Ok(views.html.purchasedPage())
   }
 
 }

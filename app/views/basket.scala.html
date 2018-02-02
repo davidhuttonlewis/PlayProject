@@ -1,42 +1,57 @@
-@(stock: scala.collection.mutable.ListBuffer[stockItem])
+@(stock: Map[stockItem,Int], basketTotal: Double)
 
 @main("Items") {
+
+    <div class="row">
+        <div class="col-md-8">
 
         @if(stock.isEmpty) {
             <p>Nothing In basket</p>
         } else {
             <div class="container" align="center">
-            <div id="products" class="row list-group">
-                @for(stock <- stock) {
-                    <div id="products" class="row list-group">
-                        <div class="item  col-xs-8 col-lg-8">
-                            <div class="thumbnail">
-                                <a href=@{s"/itemDetails/${stock.id}"}>
-                                    <img class="group list-group-image"
-                                        src=@routes.Assets.at(s"images/${stock.image}")
-                                        alt=@{stock.name}
-                                        style=" width: 100px; height: 100px"/>
-                                </a>
-                                <div class="caption">
-                                        <h4 class="group inner list-group-item-heading">
-                                        @stock.name</h4>
-                                        <p class="group inner list-group-item-text">
+                <div id="products" class="row list-group">
 
-                                        <div class="row">
-                                            <div class="col-xs-12 col-md-6">
-                                             <p class="lead">
-                                            £@stock.price</p>
-                                </div>
-                                <div class="col-xs-12 col-md-6">
-                                    <a class="btn btn-danger" href=@{s"/remove/${stock.id}"}
-                                     style="c">Removge</a>
+                    @for(stock <- stock) {
+                        <div id="products" class="row list-group">
+                            <div class="item  col-xs-8 col-lg-8">
+                                <div class="thumbnail">
+                                    <a href=@{s"/itemDetails/${stock._1.id}"}>
+                                        <img class="group list-group-image"
+                                            src=@routes.Assets.at(s"images/${stock._1.image}")
+                                            alt=@{stock._1.name}
+                                            style=" width: 100px; height: 100px"/>
+                                    </a>
+                                    <div class="caption">
+                                            <h4 class="group inner list-group-item-heading">
+                                            @stock._1.name</h4>
+                                            <p class="group inner list-group-item-text">
+
+                                            <div class="row">
+                                                <div class="col-xs-12 col-md-6">
+                                                 <p class="lead">
+                                                @{f"£${stock._1.price}%3.2f"}</p>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        @stock._2
+                                        <a class="btn btn-danger" href=@{s"/remove/${stock._1.id}"}
+                                         style="c">Removge</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
                 </div>
             </div>
+                     }
+            <div class="col-md-4">
+                <p>@{f"£${basketTotal}%3.2f"}</p>
+                <a class="btn btn-success" href="/purchase"
+                style="c">Purchase</a>
+            </div>
         }
-        }
+        </div>
+
+    </div>
+
 
 }

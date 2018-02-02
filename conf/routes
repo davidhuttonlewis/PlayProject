@@ -14,6 +14,7 @@ GET     /basket                     controllers.BoargameStock.openBasket
 GET     /itemDetails/:name          controllers.BoargameStock.itemDetails(name : String)
 GET     /basket/:itemId             controllers.BoargameStock.addItemToBasket(itemId: String)
 GET     /remove/:itemId             controllers.BoargameStock.removeItemFromBasket(itemId: String)
+GET     /purchase                   controllers.BoargameStock.purchase
 
 
 POST    /search                     controllers.BoargameStock.itemSearch
