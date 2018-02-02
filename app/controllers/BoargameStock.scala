@@ -69,6 +69,13 @@ class BoargameStock extends Controller{
     Redirect(routes.BoargameStock.openBasket())
   }
 
+  def quickAdd  (itemName:String)= Action {implicit request:Request[AnyContent] =>
+
+    basket += findItem(itemName)
+    val path = request.headers("referer")
+    Redirect(path)
+  }
+
   def removeItemFromBasket (itemName:String)= Action {implicit request:Request[AnyContent] =>
 
     basket -= findItem(itemName)

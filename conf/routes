@@ -11,9 +11,10 @@ GET     /minatures                  controllers.Application.minatures
 GET     /accessorries               controllers.Application.accessorries
 GET     /contactUs                  controllers.Application.contactUS
 GET     /basket                     controllers.BoargameStock.openBasket
-GET     /itemDetails/:name          controllers.BoargameStock.itemDetails(name : String)
+GET     /itemDetails/:name          controllers.BoargameStock.itemDetails(name: String)
 GET     /basket/:itemId             controllers.BoargameStock.addItemToBasket(itemId: String)
 GET     /remove/:itemId             controllers.BoargameStock.removeItemFromBasket(itemId: String)
+GET     /quickAdd/:itemId           controllers.BoargameStock.quickAdd(itemId: String)
 GET     /purchase                   controllers.BoargameStock.purchase
 
 
